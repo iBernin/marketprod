@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Repricer</title>
-</head>
-<body>
-    <h1>Репрайсер!</h1>
+{% extends 'base.html' %}
+
+{% block title %}
+    Repricer
+{% endblock %}
+
+{% block body %}
+<h1>Репрайсер!</h1>
     <h2>Артикула в мониторинге</h2>
     <ul>
     {% for nmid in MonitorIds %}
@@ -14,5 +14,5 @@
         </li>
     {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}
+

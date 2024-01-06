@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block body %}
+<h1>Market Prod!</h1>
+<ul>
+    <li><a href="{% url 'repricer:index' %}">Repricer</a></li>
+</ul>
+{% endblock %}
