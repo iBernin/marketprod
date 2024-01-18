@@ -20,7 +20,14 @@ from . import views
 app_name = 'repricer'
 
 urlpatterns = [
-    path('', views.repricer_view, name='index'),
+    path(
+        "",
+        views.MonitorIdsListView.as_view(),
+        name='list'
+    ),
+    path(
+        "detail/<int:pk>/",
+        views.MonitorIdsDetailView.as_view(),
+        name='detail'
+    ),
 ]
-
-

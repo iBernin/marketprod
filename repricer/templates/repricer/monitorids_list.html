@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Repricer
+{% endblock %}
+
+{% block body %}
+<h1>Репрайсер!</h1>
+    <h2>Артикула в мониторинге</h2>
+    <ul>
+    {% for nmid in object_list %}
+        <li>
+            <a href="{% url 'repricer:detail' pk=nmid.pk %}">
+            {{nmid.nmId}}
+            </a>
+            с ценой {{nmid.price}}
+        </li>
+    {% endfor %}
+    </ul>
+ {% include 'common/footer-common.html' %}
+{% endblock %}
+

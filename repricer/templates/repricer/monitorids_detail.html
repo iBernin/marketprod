@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Repricer
+{% endblock %}
+
+{% block body %}
+    <h1>NmId: {{ object.nmId }}</h1>
+    <ul>
+        Цена: {{ object.price }}
+    </ul>
+    {% include 'repricer/common/footer-common.html' %}
+    {% include 'common/footer-common.html' %}
+{% endblock %}
+
