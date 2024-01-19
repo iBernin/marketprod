@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import MonitorIds
 from django.views.generic import ListView, DetailView
+# from .forms import MonitorIdsForm
+
 
 
 # def repricer_view(request):
@@ -16,6 +18,7 @@ from django.views.generic import ListView, DetailView
 
 class MonitorIdsListView(ListView):
     model = MonitorIds
+    # form_class = MonitorIdsForm
 
 
 class MonitorIdsDetailView(DetailView):

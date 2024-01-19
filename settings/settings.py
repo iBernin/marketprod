@@ -52,6 +52,7 @@ INSTALLED_APPS = [
 
     # My packages
     'repricer',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -150,3 +151,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CELERY_RESULT_BACKEND = "rpc://"
 CELERY_RESULT_PERSISTENT = True
+
+AUTH_USER_MODEL = 'users.MpUser'
