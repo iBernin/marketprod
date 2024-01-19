@@ -152,4 +152,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CELERY_RESULT_BACKEND = "rpc://"
 CELERY_RESULT_PERSISTENT = True
 
+# login
 AUTH_USER_MODEL = 'users.MpUser'
+
+LOGIN_URL = '/users/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

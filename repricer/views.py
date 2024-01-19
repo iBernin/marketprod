@@ -1,8 +1,12 @@
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+# from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .models import MonitorIds
 from django.views.generic import ListView, DetailView
-# from .forms import MonitorIdsForm
 
+
+# from .forms import MonitorIdsForm
 
 
 # def repricer_view(request):
@@ -16,7 +20,8 @@ from django.views.generic import ListView, DetailView
 #         context,
 #     )
 
-class MonitorIdsListView(ListView):
+# @login_required
+class MonitorIdsListView(LoginRequiredMixin, ListView):
     model = MonitorIds
     # form_class = MonitorIdsForm
 
