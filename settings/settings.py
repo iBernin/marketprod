@@ -12,12 +12,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from yaml import safe_load
-f = open('c:\\Users\\ivan_be\\YandexDisk\\python\\config.yaml', 'r')
-config = safe_load(f)
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+f = open(BASE_DIR / 'config.yaml', 'r')
+config = safe_load(f)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
