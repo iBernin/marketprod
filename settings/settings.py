@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from yaml import safe_load
+f = open('c:\\Users\\ivan_be\\YandexDisk\\python\\config.yaml', 'r')
+config = safe_load(f)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -97,15 +100,46 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': "marketprod",
+#         'USER': "user",
+#         'PASSWORD': "example",
+#         'HOST': "localhost",
+#         'PORT': 5432,
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "marketprod",
-        'USER': "user",
-        'PASSWORD': "example",
-        'HOST': "localhost",
-        'PORT': 5432,
-    }
+        # String. It must be "mssql".
+        'ENGINE': 'mssql',
+
+        # String. Database name. Required.
+        'NAME': 'marketprod',
+
+        # String. Database user name in "user" format. If not given then MS Integrated Security will be used.
+        'USER': config['marketserver_sql']['login']
+,
+
+        # String. Database user password.
+        'PASSWORD': config['marketserver_sql']['pass'],
+
+         # String. SQL Server instance in "server\instance" format.
+        'HOST': '192.168.22.224',
+
+        # String. Server instance port. An empty string means the default port.
+        'PORT': '',
+
+        # Dictionary. Additional database settings.
+        'OPTIONS': {
+            # String. ODBC Driver to use ("ODBC Driver 17 for SQL Server",
+            # "SQL Server Native Client 11.0", "FreeTDS" etc).
+            # Default is "ODBC Driver 17 for SQL Server".
+            # 'Trusted_Connection': 'no',
+            'driver': 'ODBC Driver 17 for SQL Server',
+        },
+    },
 }
 
 # Password validation
