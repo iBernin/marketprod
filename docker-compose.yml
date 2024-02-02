@@ -23,8 +23,8 @@ services:
   web:
     build:
       context: ./
-    depends_on:
-      - pg
+#    depends_on:
+#      - pg
     ports:
       - "21000:21000"
 #    networks:
