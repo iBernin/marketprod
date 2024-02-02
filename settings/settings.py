@@ -107,7 +107,7 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 #         'NAME': "marketprod",
 #         'USER': "user",
 #         'PASSWORD': "example",
-#         'HOST': "localhost",
+#         'HOST': "pg",
 #         'PORT': 5432,
 #     }
 # }

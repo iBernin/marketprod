@@ -1,0 +1,5 @@
+.env
+celerybeat-schedule
+.venv
+.gitignore
+.git
