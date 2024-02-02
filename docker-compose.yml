@@ -7,17 +7,17 @@ services:
 #      - "5672:5672"
 #      - "15672:15672"
 
-  pg:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_DB: marketprod
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: example
-    ports:
-      - "5432:5432"
-#    networks:
-#      - marketprod-network
+#  pg:
+#    image: postgres
+#    restart: always
+#    environment:
+#      POSTGRES_DB: marketprod
+#      POSTGRES_USER: user
+#      POSTGRES_PASSWORD: example
+#    ports:
+#      - "5432:5432"
+##    networks:
+##      - marketprod-network
 
 
   web:
