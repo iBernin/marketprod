@@ -11,22 +11,24 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
-from yaml import safe_load
+
+import environ
+
+env = environ.Env()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-f = open(BASE_DIR / 'config.yaml', 'r')
-config = safe_load(f)
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-i=w!tyt-_zv1(0aj3%n_1@qwri1jhaw5c%4tjqs=jcy%0tx0g#'
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG") == "True"
 
 ALLOWED_HOSTS = [
     "localhost",
@@ -35,11 +37,18 @@ ALLOWED_HOSTS = [
     "192.168.24.235"
 ]
 
-INTERNAL_IPS = [
-    # ...
-    "127.0.0.1",
-    # ...
-]
+if DEBUG:
+    import socket  # only if you haven't already imported this
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "10.0.2.2"]
+else:
+    INTERNAL_IPS = [
+        # ...
+        "127.0.0.1",
+        # ...
+    ]
+
+
 
 CSRF_TRUSTED_ORIGINS = ['http://localhost:21000']
 
@@ -119,17 +128,17 @@ DATABASES = {
         'ENGINE': 'mssql',
 
         # String. Database name. Required.
-        'NAME': 'marketprod',
+        'NAME': env("DB_NAME"),
 
         # String. Database user name in "user" format. If not given then MS Integrated Security will be used.
-        'USER': config['marketserver_sql']['login']
+        'USER': env("DB_USER")
         ,
 
         # String. Database user password.
-        'PASSWORD': config['marketserver_sql']['pass'],
+        'PASSWORD': env("DB_PASSWORD"),
 
         # String. SQL Server instance in "server\instance" format.
-        'HOST': '192.168.22.224',
+        'HOST': env("DB_HOST"),
 
         # String. Server instance port. An empty string means the default port.
         'PORT': '',
@@ -185,8 +194,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, STATIC_URL)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CELERY_RESULT_BACKEND = "rpc://"
-CELERY_RESULT_PERSISTENT = True
+CELERY_BROKER_URL = env("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND")
+
+# CELERY_BEAT_SCHEDULE = {
+#     'generate_predictions': {
+#         'task': 'api.tasks.generate_predictions',
+#         'schedule': 5 #* 60,
+#     },
+# }
 
 # login
 AUTH_USER_MODEL = 'users.MpUser'
