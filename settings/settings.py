@@ -41,7 +41,7 @@ INTERNAL_IPS = [
     # ...
 ]
 
-CSRF_TRUSTED_ORIGINS = ['http://192.168.24.235']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:21000']
 
 # Application definition
 
