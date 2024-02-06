@@ -13,7 +13,6 @@ import os
 from pathlib import Path
 from yaml import safe_load
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -41,6 +40,9 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+CSRF_TRUSTED_ORIGINS = ['http://192.168.24.235']
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -91,7 +93,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'settings.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -122,12 +123,12 @@ DATABASES = {
 
         # String. Database user name in "user" format. If not given then MS Integrated Security will be used.
         'USER': config['marketserver_sql']['login']
-,
+        ,
 
         # String. Database user password.
         'PASSWORD': config['marketserver_sql']['pass'],
 
-         # String. SQL Server instance in "server\instance" format.
+        # String. SQL Server instance in "server\instance" format.
         'HOST': '192.168.22.224',
 
         # String. Server instance port. An empty string means the default port.
@@ -162,7 +163,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -173,7 +173,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
