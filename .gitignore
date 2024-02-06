@@ -141,4 +141,6 @@ dmypy.json
 cython_debug/
 
 config.yaml
+static/
 /static
+static
